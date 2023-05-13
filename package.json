@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "ts:watch": "tsc -w",
-    "node:dev": "cross-env NODE_ENV=development nodemon",
-    "start": "concurrently \"yarn ts:watch\" \"yarn node:dev\" cross-env NODE_ENV=production",
+    "node:dev": "nodemon",
+    "start": "cross-env NODE_ENV=development concurrently \"yarn ts:watch\" \"yarn node:dev\" ",
+    "start:prod": "cross-env NODE_ENV=production concurrently \"yarn ts:watch\" \"yarn node:dev\" ",
     "build": "tsc --build && cross-env NODE_ENV=production node build/index.js"
   },
   "devDependencies": {

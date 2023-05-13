@@ -5,6 +5,7 @@ import { ogg } from "./ogg.js";
 import { openai } from "./openai.js";
 import { code } from "telegraf/format";
 import { getMainMenu } from "./keyboards.js";
+console.log("env is", process.env.NODE_ENV);
 export const bot = new Telegraf(config.get("TELEGRAM_TOKEN"));
 bot.use(session());
 const INITIAL_SESSION = {

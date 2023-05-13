@@ -10,6 +10,8 @@ import { Context } from "telegraf";
 import { getMainMenu } from "./keyboards.js";
 import { VercelRequest, VercelResponse } from "@vercel/node";
 
+console.log("env is", process.env.NODE_ENV);
+
 interface CustomContext extends Context {
   session: {
     messages: any[];
