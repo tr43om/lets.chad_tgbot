@@ -5,7 +5,6 @@ import { ogg } from "./ogg.js";
 import { openai } from "./openai.js";
 import { code } from "telegraf/format";
 import { getMainMenu } from "./keyboards.js";
-console.log("env is", process.env.NODE_ENV);
 export const bot = new Telegraf(config.get("TELEGRAM_TOKEN"));
 bot.use(session());
 const INITIAL_SESSION = {
@@ -58,5 +57,8 @@ bot.on(message("text"), async (ctx) => {
         console.log(`Error while voice message`, error.message);
     }
 });
+if (process.env.NODE_ENV === "development") {
+    bot.launch();
+}
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));

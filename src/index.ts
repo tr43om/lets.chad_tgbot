@@ -10,8 +10,6 @@ import { Context } from "telegraf";
 import { getMainMenu } from "./keyboards.js";
 import { VercelRequest, VercelResponse } from "@vercel/node";
 
-console.log("env is", process.env.NODE_ENV);
-
 interface CustomContext extends Context {
   session: {
     messages: any[];
@@ -84,5 +82,8 @@ bot.on(message("text"), async (ctx) => {
   }
 });
 
+if (process.env.NODE_ENV === "development") {
+  bot.launch();
+}
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));

@@ -1,11 +1,6 @@
-import { bot } from "../src/index.js";
+import { bot } from "../index.js";
 if (process.env.NODE_ENV === "production") {
-    console.log("production");
     bot.telegram.setWebhook(`${process.env.VERCEL_URL}/api/bot-webhook`);
-}
-else {
-    console.log("dev");
-    bot.launch();
 }
 export default async (req, res) => {
     if (req.method === "POST") {
