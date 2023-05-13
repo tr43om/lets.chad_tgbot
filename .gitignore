@@ -1,6 +1,7 @@
 .idea
 node_modules
-config/default.json
-config/production.json
+config/
 voices/*.mp3
 .vercel
+.env
+.env.*

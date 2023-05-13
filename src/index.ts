@@ -8,9 +8,12 @@ import { code } from "telegraf/format";
 
 import { Context } from "telegraf";
 import { getMainMenu } from "./keyboards.js";
+
 import { VercelRequest, VercelResponse } from "@vercel/node";
 
-process.env.NODE_CONFIG_DIR = "./config";
+const NODE_ENV = process.env.NODE_ENV;
+
+require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 
 interface CustomContext extends Context {
   session: {
@@ -18,7 +21,9 @@ interface CustomContext extends Context {
   };
 }
 
-export const bot = new Telegraf<CustomContext>(config.get("TELEGRAM_TOKEN"));
+export const bot = new Telegraf<CustomContext>(
+  process.env.TELEGRAM_TOKEN as string
+);
 bot.use(session());
 
 const INITIAL_SESSION = {

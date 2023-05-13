@@ -50,4 +50,4 @@ class OpenAI {
   }
 }
 
-export const openai = new OpenAI(config.get("OPENAI_API_KEY"));
+export const openai = new OpenAI(process.env.OPENAI_API_KEY as string);
