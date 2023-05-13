@@ -8,7 +8,7 @@
   ],
   "routes": [
     {
-      "src": "/api/bot.ts",
+      "src": "/api/bot-webhook",
       "dest": "src/index.ts"
     }
   ]
