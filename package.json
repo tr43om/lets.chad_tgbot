@@ -1,14 +1,14 @@
 {
   "name": "gpt-bot",
   "version": "1.0.0",
-  "main": "build/bot.js",
+  "main": "build/index.js",
   "license": "MIT",
   "type": "module",
   "scripts": {
     "ts:watch": "tsc -w",
     "node:dev": "cross-env NODE_ENV=development nodemon",
     "start": "concurrently \"yarn ts:watch\" \"yarn node:dev\" cross-env NODE_ENV=production",
-    "build": "tsc --build && cross-env NODE_ENV=production node build/bot.js"
+    "build": "tsc --build && cross-env NODE_ENV=production node build/index.js"
   },
   "devDependencies": {
     "@types/config": "^3.3.0",

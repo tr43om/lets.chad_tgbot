@@ -1,5 +1,5 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
-import { bot } from "../src/bot.js";
+import { bot } from "../src/index.js";
 
 if (process.env.NODE_ENV === "production") {
   bot.telegram.setWebhook(`${process.env.VERCEL_URL}/src/bot`);
