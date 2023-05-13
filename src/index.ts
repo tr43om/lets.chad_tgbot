@@ -10,10 +10,11 @@ import { Context } from "telegraf";
 import { getMainMenu } from "./keyboards.js";
 
 import { VercelRequest, VercelResponse } from "@vercel/node";
+import dotenv from "dotenv";
 
 const NODE_ENV = process.env.NODE_ENV;
 
-require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 interface CustomContext extends Context {
   session: {
