@@ -8,6 +8,7 @@ import { code } from "telegraf/format";
 
 import { Context } from "telegraf";
 import { getMainMenu } from "./keyboards.js";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 
 interface CustomContext extends Context {
   session: {
@@ -15,7 +16,7 @@ interface CustomContext extends Context {
   };
 }
 
-const bot = new Telegraf<CustomContext>(config.get("TELEGRAM_TOKEN"));
+export const bot = new Telegraf<CustomContext>(config.get("TELEGRAM_TOKEN"));
 bot.use(session());
 
 const INITIAL_SESSION = {
@@ -80,8 +81,6 @@ bot.on(message("text"), async (ctx) => {
     console.log(`Error while voice message`, error.message);
   }
 });
-
-bot.launch();
 
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));

@@ -1,19 +1,20 @@
 {
   "name": "gpt-bot",
   "version": "1.0.0",
-  "main": "build/main.js",
+  "main": "build/bot.js",
   "license": "MIT",
   "type": "module",
   "scripts": {
     "ts:watch": "tsc -w",
     "node:dev": "cross-env NODE_ENV=development nodemon",
     "start": "concurrently \"yarn ts:watch\" \"yarn node:dev\" cross-env NODE_ENV=production",
-    "build": "tsc --build && cross-env NODE_ENV=production node build/index.js"
+    "build": "tsc --build && cross-env NODE_ENV=production node build/bot.js"
   },
   "devDependencies": {
     "@types/config": "^3.3.0",
     "@types/fluent-ffmpeg": "^2.1.21",
     "@types/node": "^20.1.2",
+    "@vercel/node": "^2.14.2",
     "concurrently": "^8.0.1",
     "cross-env": "^7.0.3",
     "nodemon": "^2.0.22",
