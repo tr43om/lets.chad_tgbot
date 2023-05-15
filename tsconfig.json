@@ -10,6 +10,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2019",
-    "types": ["node", "@types/dotenv"]
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["dotenv"]
   }
 }
