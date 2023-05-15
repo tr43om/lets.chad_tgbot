@@ -1,6 +1,6 @@
 import { OpenAIApi, Configuration, } from "openai";
-import config from "config";
 import { createReadStream } from "fs";
+import config from "./config.js";
 class OpenAI {
     constructor(apiKey) {
         const configuration = new Configuration({
@@ -34,4 +34,4 @@ class OpenAI {
         }
     }
 }
-export const openai = new OpenAI(config.get("OPENAI_API_KEY"));
+export const openai = new OpenAI(config.openAIKey);

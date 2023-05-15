@@ -1,6 +1,8 @@
+import config from "./config.js";
+import * as dotenv from "dotenv";
 import { Markup, Telegraf, session } from "telegraf";
+
 import { message } from "telegraf/filters";
-import config from "config";
 import { ogg } from "./ogg.js";
 import { openai } from "./openai.js";
 import { ChatCompletionRequestMessage } from "openai";
@@ -10,11 +12,6 @@ import { Context } from "telegraf";
 import { getMainMenu } from "./keyboards.js";
 
 import { VercelRequest, VercelResponse } from "@vercel/node";
-import dotenv from "dotenv";
-
-const NODE_ENV = process.env.NODE_ENV;
-
-dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 interface CustomContext extends Context {
   session: {
@@ -22,9 +19,7 @@ interface CustomContext extends Context {
   };
 }
 
-export const bot = new Telegraf<CustomContext>(
-  process.env.TELEGRAM_TOKEN as string
-);
+export const bot = new Telegraf<CustomContext>(config.telegramBotKey);
 bot.use(session());
 
 const INITIAL_SESSION = {

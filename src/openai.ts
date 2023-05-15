@@ -4,8 +4,9 @@ import {
   ChatCompletionRequestMessage,
   ChatCompletionResponseMessage,
 } from "openai";
-import config from "config";
 import { PathLike, createReadStream } from "fs";
+import config from "./config.js";
+
 class OpenAI {
   private openai: OpenAIApi;
 
@@ -50,4 +51,4 @@ class OpenAI {
   }
 }
 
-export const openai = new OpenAI(process.env.OPENAI_API_KEY as string);
+export const openai = new OpenAI(config.openAIKey);

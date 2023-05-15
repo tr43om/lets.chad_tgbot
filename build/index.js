@@ -1,11 +1,11 @@
+import config from "./config.js";
 import { Telegraf, session } from "telegraf";
 import { message } from "telegraf/filters";
-import config from "config";
 import { ogg } from "./ogg.js";
 import { openai } from "./openai.js";
 import { code } from "telegraf/format";
 import { getMainMenu } from "./keyboards.js";
-export const bot = new Telegraf(config.get("TELEGRAM_TOKEN"));
+export const bot = new Telegraf(config.telegramBotKey);
 bot.use(session());
 const INITIAL_SESSION = {
     messages: [],
