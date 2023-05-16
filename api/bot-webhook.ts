@@ -1,6 +1,6 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { Context, Telegraf } from "telegraf";
-import config from "../src/config.js";
+import config from "./config.js";
 
 interface CustomContext extends Context {
   session: {

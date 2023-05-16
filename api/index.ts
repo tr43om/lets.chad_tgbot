@@ -1,5 +1,3 @@
-import config from "./config.js";
-import * as dotenv from "dotenv";
 import { Markup, Telegraf, session } from "telegraf";
 
 import { message } from "telegraf/filters";
@@ -10,7 +8,7 @@ import { code } from "telegraf/format";
 
 import { Context } from "telegraf";
 import { getMainMenu } from "./keyboards.js";
-import { bot } from "../api/bot-webhook.js";
+import { bot } from "./bot-webhook.js";
 
 import { VercelRequest, VercelResponse } from "@vercel/node";
 

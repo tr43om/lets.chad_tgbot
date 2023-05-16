@@ -6,12 +6,13 @@
     "module": "esnext",
     "moduleResolution": "node",
     "outDir": "./build",
+    "rootDir": "./api",
     "skipLibCheck": true,
     "strict": true,
     "target": "es2019",
     "typeRoots": ["./node_modules/@types"],
     "types": ["dotenv"]
   },
-  "include": ["src/**/*.ts", "api/**/*.ts"],
+  // "include": ["src/**/*.ts", "api/**/*.ts"],
   "exclude": ["node_modules"]
 }
