@@ -1,5 +1,14 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
-import { bot } from "../src/index.js";
+import { Context, Telegraf } from "telegraf";
+import config from "../src/config.js";
+
+interface CustomContext extends Context {
+  session: {
+    messages: any[];
+  };
+}
+
+export const bot = new Telegraf<CustomContext>(config.telegramBotKey);
 
 if (process.env.NODE_ENV === "production") {
   bot.telegram.setWebhook(`${process.env.VERCEL_URL}/api/bot-webhook`);
