@@ -1,11 +1,10 @@
-import config from "./config.js";
-import { Telegraf, session } from "telegraf";
+import { session } from "telegraf";
 import { message } from "telegraf/filters";
 import { ogg } from "./ogg.js";
 import { openai } from "./openai.js";
 import { code } from "telegraf/format";
 import { getMainMenu } from "./keyboards.js";
-export const bot = new Telegraf(config.telegramBotKey);
+import { bot } from "./bot-webhook.js";
 bot.use(session());
 const INITIAL_SESSION = {
     messages: [],

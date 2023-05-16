@@ -6,11 +6,8 @@ import { openai } from "./openai.js";
 import { ChatCompletionRequestMessage } from "openai";
 import { code } from "telegraf/format";
 
-import { Context } from "telegraf";
 import { getMainMenu } from "./keyboards.js";
 import { bot } from "./bot-webhook.js";
-
-import { VercelRequest, VercelResponse } from "@vercel/node";
 
 bot.use(session());
 
