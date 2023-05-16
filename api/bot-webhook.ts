@@ -33,30 +33,30 @@ bot.command("stop", async (ctx) => {
   await ctx.reply("кончил");
 });
 
-bot.on(message("voice"), async (ctx) => {
-  ctx.session ??= INITIAL_SESSION;
-  try {
-    await ctx.reply(code("🔃 Принято! Сейчас отвечу..."));
-    const link = await ctx.telegram.getFileLink(ctx.message.voice.file_id);
-    const userId = String(ctx.message.from.id);
-    console.log(link.href);
-    const oggPath = await ogg.create(link.href, userId);
-    const mp3Path = await ogg.toMp3(oggPath, userId);
+// bot.on(message("voice"), async (ctx) => {
+//   ctx.session ??= INITIAL_SESSION;
+//   try {
+//     await ctx.reply(code("🔃 Принято! Сейчас отвечу..."));
+//     const link = await ctx.telegram.getFileLink(ctx.message.voice.file_id);
+//     const userId = String(ctx.message.from.id);
+//     console.log(link.href);
+//     const oggPath = await ogg.create(link.href, userId);
+//     const mp3Path = await ogg.toMp3(oggPath, userId);
 
-    const prompt = await openai.transcription(mp3Path);
-    const { messages } = ctx.session;
+//     const prompt = await openai.transcription(mp3Path);
+//     const { messages } = ctx.session;
 
-    ctx.reply(code(`🗣️ Ваш запрос: ${prompt}`));
+//     ctx.reply(code(`🗣️ Ваш запрос: ${prompt}`));
 
-    messages.push({ role: "user", content: prompt });
-    const response = await openai.chat(messages);
-    messages.push({ role: "assistant", content: response.content });
+//     messages.push({ role: "user", content: prompt });
+//     const response = await openai.chat(messages);
+//     messages.push({ role: "assistant", content: response.content });
 
-    await ctx.reply(response.content);
-  } catch (error: any) {
-    console.log(`Error while voice message`, error.message);
-  }
-});
+//     await ctx.reply(response.content);
+//   } catch (error: any) {
+//     console.log(`Error while voice message`, error.message);
+//   }
+// });
 
 bot.on(message("text"), async (ctx) => {
   ctx.session ??= INITIAL_SESSION;
