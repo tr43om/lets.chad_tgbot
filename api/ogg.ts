@@ -11,7 +11,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 export const ogg = {
   create: async (url: string, filename: string): Promise<string> => {
     try {
-      const oggPath = resolve(__dirname, "../voices", `${filename}.ogg`);
+      const oggPath = `/tmp/${filename}.ogg`;
+
       const response = await axios({
         method: "get",
         url,
@@ -31,7 +32,7 @@ export const ogg = {
   toMp3: (input: string, output: string): Promise<string> => {
     try {
       ffmpeg.setFfmpegPath(installer.path);
-      const outputPath = resolve(dirname(input), `${output}.mp3`);
+      const outputPath = `/tmp/${output}.mp3`;
       return new Promise((resolve, reject) => {
         ffmpeg(input)
           .inputOption("-t 30")

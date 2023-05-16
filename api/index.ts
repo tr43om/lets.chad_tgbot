@@ -8,6 +8,7 @@ import { code } from "telegraf/format";
 
 import { getMainMenu } from "./keyboards.js";
 import { bot } from "./bot-webhook.js";
+import axios from "axios";
 
 bot.use(session());
 
@@ -38,19 +39,26 @@ bot.on(message("voice"), async (ctx) => {
     const link = await ctx.telegram.getFileLink(ctx.message.voice.file_id);
     const userId = String(ctx.message.from.id);
     console.log(link.href);
-    const oggPath = await ogg.create(link.href, userId);
-    const mp3Path = await ogg.toMp3(oggPath, userId);
 
-    const prompt = await openai.transcription(mp3Path);
-    const { messages } = ctx.session;
+    const fileId = ctx.message.voice.file_id;
+    const file = await ctx.telegram.getFile(fileId);
+    const url = `https://api.telegram.org/file/bot${process.env.BOT_TOKEN}/${file.file_path}`;
 
-    ctx.reply(code(`🗣️ Ваш запрос: ${prompt}`));
+    const response = await axios(url, { responseType: "arraybuffer" });
+    const oggBuffer = Buffer.from(response.data);
+    // const oggPath = await ogg.create(link.href, userId);
+    // const mp3Path = await ogg.toMp3(oggPath, userId);
 
-    messages.push({ role: "user", content: prompt });
-    const response = await openai.chat(messages);
-    messages.push({ role: "assistant", content: response.content });
+    // const prompt = await openai.transcription(mp3Path);
+    // const { messages } = ctx.session;
 
-    await ctx.reply(response.content);
+    // ctx.reply(code(`🗣️ Ваш запрос: ${prompt}`));
+
+    // messages.push({ role: "user", content: prompt });
+    // const response = await openai.chat(messages);
+    // messages.push({ role: "assistant", content: response.content });
+
+    // await ctx.reply(response.content);
   } catch (error: any) {
     console.log(`Error while voice message`, error.message);
   }
